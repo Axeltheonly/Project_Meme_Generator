@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Meme Generator</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+<div class="container">
+    <h1>Meme Generator</h1>
+
+    <div class="controls">
+        <label>Select an Image</label>
+        <input type="file" id="imageInput" accept="image/*">
+
+        <h3>Top Text</h3>
+        <input type="text" id="topText" placeholder="Enter top text">
+        
+        <label>Font</label>
+        <select id="topFont">
+            <option value="Impact">Impact</option>
+            <option value="Arial">Arial</option>
+            <option value="Comic Sans MS">Comic Sans</option>
+            <option value="Times New Roman">Times New Roman</option>
+            <option value="Courier New">Courier New</option>
+        </select>
+
+        <label>Font Size</label>
+        <input type="number" id="topFontSize" value="40" min="10" max="100">
+
+        <label>Text Color</label>
+        <input type="color" id="topColor" value="#ffffff">
+
+        <label>Outline Color</label>
+        <input type="color" id="topOutlineColor" value="#000000">
+
+        <label>Vertical Position (px from top)</label>
+        <input type="number" id="topPosition" value="50" min="0">
+
+        <h3>Bottom Text</h3>
+        <input type="text" id="bottomText" placeholder="Enter bottom text">
+        
+        <label>Font</label>
+        <select id="bottomFont">
+            <option value="Impact">Impact</option>
+            <option value="Arial">Arial</option>
+            <option value="Comic Sans MS">Comic Sans</option>
+            <option value="Times New Roman">Times New Roman</option>
+            <option value="Courier New">Courier New</option>
+        </select>
+
+        <label>Font Size</label>
+        <input type="number" id="bottomFontSize" value="40" min="10" max="100">
+
+        <label>Text Color</label>
+        <input type="color" id="bottomColor" value="#ffffff">
+
+        <label>Outline Color</label>
+        <input type="color" id="bottomOutlineColor" value="#000000">
+
+        <label>Vertical Position (px from bottom)</label>
+        <input type="number" id="bottomPosition" value="30" min="0">
+
+        <button id="addTextBtn">Update Preview</button>
+        <button id="downloadBtn">Download Meme</button>
+        <button id="saveServerBtn">Save to Server</button>
+
+        <a href="gallery.html" class="link">Open Gallery</a>
+    </div>
+
+    <div class="preview">
+        <canvas id="memeCanvas" width="600" height="600"></canvas>
+        
+        <!-- Social Share Buttons -->
+        <div class="share-buttons">
+            <h3>Share Your Meme</h3>
+            <button id="shareTwitter" class="share-btn twitter">Share on Twitter</button>
+            <button id="shareFacebook" class="share-btn facebook">Share on Facebook</button>
+            <button id="shareReddit" class="share-btn reddit">Share on Reddit</button>
+            <button id="copyLink" class="share-btn copy">Copy Image Link</button>
+        </div>
+    </div>
+</div>
+
+<script src="app.js"></script>
+</body>
+</html>
