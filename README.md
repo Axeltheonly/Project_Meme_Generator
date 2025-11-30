@@ -25,7 +25,7 @@ A full-stack meme generator application built with Spring Boot and vanilla JavaS
 - Java 17+
 - Spring Boot 3.x
 - Spring Data JPA
-- H2 Database (can be changed to MySQL/PostgreSQL)
+- MySQL Database
 - Maven
 
 ### Frontend
