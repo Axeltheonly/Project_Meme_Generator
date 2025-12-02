@@ -20,7 +20,7 @@ A full-stack meme generator application built with Spring Boot and vanilla JavaS
 -  Gallery view of all created memes
 -  Responsive design
 
-##  Technologies Used
+##  Technologies 
 
 ### Backend
 - Java 17+
