@@ -216,13 +216,9 @@ canvas {
     margin-top: 15px !important;
 }
 
-.share-btn.download {
-    background: #6c757d;
-}
 
-.share-btn.download:hover {
-    background: #5a6268;
-}
+
+
 .meme-card {
     display: flex;
     flex-direction: column;
