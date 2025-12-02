@@ -1,26 +1,26 @@
-# 🎨 Meme Generator
+#  Meme Generator
 
 A full-stack meme generator application built with Spring Boot and vanilla JavaScript. Create, customize, save, and share memes with advanced text styling options.
 
 <img width="1196" height="847" alt="Screenshot 2025-11-30 203801" src="https://github.com/user-attachments/assets/4e7767f5-446c-4311-a749-3f9cf933bb63" />
 
 
-## ✨ Features
+##  Features
 
-- 🖼️ Upload custom images
-- ✍️ Add customizable top and bottom text
-- 🎨 Advanced text controls:
+-  Upload custom images
+-  Add customizable top and bottom text
+-  Advanced text controls:
   - Font selection (Impact, Arial, Comic Sans, etc.)
   - Font size adjustment
   - Text and outline color pickers
   - Vertical position control
-- 💾 Save memes to server
-- 📥 Download memes locally
-- 🌐 Share on social media (Twitter, Facebook, Reddit)
-- 🖼️ Gallery view of all created memes
-- 📱 Responsive design
+-  Save memes to server
+-  Download memes locally
+-  Share on social media (Twitter, Facebook, Reddit)
+-  Gallery view of all created memes
+-  Responsive design
 
-## 🛠️ Technologies Used
+##  Technologies Used
 
 ### Backend
 - Java 17+
@@ -34,7 +34,7 @@ A full-stack meme generator application built with Spring Boot and vanilla JavaS
 - Vanilla JavaScript
 - CSS3
 
-## 📦 Installation
+##  Installation
 
 ### Prerequisites
 - Java 17 or higher
@@ -71,7 +71,7 @@ The backend will start on `http://localhost:8080`
 1. Open the frontend files with a live server (VS Code Live Server recommended)
 2. Make sure the server runs on `http://127.0.0.1:5500` (or update CORS settings in `WebConfig.java`)
 
-## 🚀 Usage
+##  Usage
 
 1. **Create a Meme:**
    - Upload an image
@@ -87,7 +87,7 @@ The backend will start on `http://localhost:8080`
 3. **View Gallery:**
    - Click "Open Gallery" to see all saved memes
 
-## 📁 Project Structure
+##  Project Structure
 ```
 
 Project_Meme/                  # Backend (Spring Boot)
@@ -118,7 +118,7 @@ Project_Meme/                  # Backend (Spring Boot)
 └── README.md
 ```
 
-## ⚙️ Configuration
+##  Configuration
 
 ### Database Configuration
 By default, the app uses H2 in-memory database. To use MySQL or PostgreSQL, update `application.properties`:
