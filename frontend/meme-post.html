@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Meme Post</title>
+    <link rel="stylesheet" href="styles.css">
+    
+    <!-- Open Graph meta tags pour Facebook/Twitter -->
+    <meta property="og:title" content="Check out this meme!" id="ogTitle">
+    <meta property="og:description" content="Created with Meme Generator" id="ogDescription">
+    <meta property="og:image" content="" id="ogImage">
+    <meta property="og:type" content="website">
+    
+    <!-- Twitter Card -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Check out this meme!" id="twitterTitle">
+    <meta name="twitter:description" content="Created with Meme Generator" id="twitterDescription">
+    <meta name="twitter:image" content="" id="twitterImage">
+</head>
+<body>
+
+<div class="container">
+    <div class="post-header">
+        <h1>🎉 Meme Post</h1>
+        <a href="index.html" class="link">← Create Your Own</a>
+    </div>
+
+    <div class="post-container">
+        <!-- Image du mème -->
+        <div class="post-image">
+            <img id="memeImage" src="" alt="Meme">
+        </div>
+
+        <!-- Informations du mème -->
+        <div class="post-info">
+            <h2 id="memeTopText"></h2>
+            <p id="memeBottomText"></p>
+            <p class="post-date" id="createdAt"></p>
+        </div>
+
+        <!-- Boutons de partage -->
+        <div class="share-buttons">
+            <h3>Share This Meme</h3>
+            <button id="shareTwitterPost" class="share-btn twitter">Share on Twitter</button>
+            <button id="shareFacebookPost" class="share-btn facebook">Share on Facebook</button>
+            <button id="shareRedditPost" class="share-btn reddit">Share on Reddit</button>
+            <button id="copyLinkPost" class="share-btn copy">Copy Post Link</button>
+            <button id="downloadMeme" class="share-btn download">Download Meme</button>
+        </div>
+    </div>
+
+    <a href="gallery.html" class="link">← Back to Gallery</a>
+</div>
+
+<script>
+    // Récupérer l'ID du mème depuis l'URL (ex: meme-post.html?id=123)
+    const urlParams = new URLSearchParams(window.location.search);
+    const memeId = urlParams.get('id');
+
+    if (!memeId) {
+        document.querySelector('.post-container').innerHTML = '<p>Meme not found!</p>';
+    } else {
+        loadMemePost(memeId);
+    }
+
+    async function loadMemePost(id) {
+        try {
+            // Récupérer les infos du mème depuis l'API
+            const response = await fetch(`http://localhost:8080/api/memes/${id}`);
+            
+            if (!response.ok) {
+                throw new Error('Meme not found');
+            }
+            
+            const meme = await response.json();
+            
+            // Afficher l'image
+            const memeImage = document.getElementById('memeImage');
+            memeImage.src = `http://localhost:8080/uploads/${meme.filename}`;
+            
+            // Afficher les textes
+            document.getElementById('memeTopText').textContent = meme.topText || 'No top text';
+            document.getElementById('memeBottomText').textContent = meme.bottomText || 'No bottom text';
+            
+            // Afficher la date
+            const date = new Date(meme.createdAt);
+            document.getElementById('createdAt').textContent = `Created: ${date.toLocaleDateString()}`;
+            
+            // Mettre à jour les meta tags pour le partage
+            const imageUrl = `http://localhost:8080/uploads/${meme.filename}`;
+            const postUrl = window.location.href;
+            
+            document.getElementById('ogImage').setAttribute('content', imageUrl);
+            document.getElementById('ogTitle').setAttribute('content', meme.topText || 'Check out this meme!');
+            document.getElementById('ogDescription').setAttribute('content', meme.bottomText || 'Created with Meme Generator');
+            
+            document.getElementById('twitterImage').setAttribute('content', imageUrl);
+            document.getElementById('twitterTitle').setAttribute('content', meme.topText || 'Check out this meme!');
+            document.getElementById('twitterDescription').setAttribute('content', meme.bottomText || 'Created with Meme Generator');
+            
+            // Configurer les boutons de partage
+            setupShareButtons(postUrl, meme);
+            
+        } catch (error) {
+            console.error('Error loading meme:', error);
+            document.querySelector('.post-container').innerHTML = '<p>Error loading meme. Please try again.</p>';
+        }
+    }
+
+    function setupShareButtons(postUrl, meme) {
+        // Share on Twitter
+        document.getElementById('shareTwitterPost').addEventListener('click', () => {
+            const text = encodeURIComponent(`${meme.topText || 'Check out this meme!'}`);
+            const url = encodeURIComponent(postUrl);
+            window.open(`https://twitter.com/intent/tweet?text=${text}&url=${url}`, "_blank");
+        });
+
+        // Share on Facebook
+        document.getElementById('shareFacebookPost').addEventListener('click', () => {
+            const url = encodeURIComponent(postUrl);
+            window.open(`https://www.facebook.com/sharer/sharer.php?u=${url}`, "_blank");
+        });
+
+        // Share on Reddit
+        document.getElementById('shareRedditPost').addEventListener('click', () => {
+            const title = encodeURIComponent(meme.topText || 'Check out this meme!');
+            const url = encodeURIComponent(postUrl);
+            window.open(`https://reddit.com/submit?title=${title}&url=${url}`, "_blank");
+        });
+
+        // Copy link
+        document.getElementById('copyLinkPost').addEventListener('click', async () => {
+            try {
+                await navigator.clipboard.writeText(postUrl);
+                alert("Post link copied to clipboard!");
+            } catch (err) {
+                const input = document.createElement("input");
+                input.value = postUrl;
+                document.body.appendChild(input);
+                input.select();
+                document.execCommand("copy");
+                document.body.removeChild(input);
+                alert("Post link copied to clipboard!");
+            }
+        });
+
+        
+    }
+</script>
+
+</body>
+</html>

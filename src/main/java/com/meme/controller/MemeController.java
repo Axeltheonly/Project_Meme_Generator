@@ -9,6 +9,7 @@ import org.springframework.web.multipart.MultipartFile;
 
 import java.io.IOException;
 import java.util.List;
+import java.util.Optional;
 
 
 @RestController
@@ -17,40 +18,32 @@ import java.util.List;
 public class MemeController {
     private final MemeService memeService;
 
-
-
-
-
     public MemeController(MemeService memeService) {
         this.memeService = memeService;
     }
 
-
-    // Upload raw image + texts
-    @PostMapping("/upload")
-    public ResponseEntity<?> upload(@RequestParam("file") MultipartFile file,
-                                    @RequestParam(value = "topText", required = false) String topText,
-                                    @RequestParam(value = "bottomText", required = false) String bottomText) throws IOException {
-        Meme saved = memeService.saveUploadedFile(file, topText, bottomText);
-        return ResponseEntity.ok(saved);
+    // NOUVEAU : Récupérer un mème par ID
+    @GetMapping("/{id}")
+    public ResponseEntity<?> getById(@PathVariable Long id) {
+        Optional<Meme> meme = memeService.findById(id);
+        if (meme.isPresent()) {
+            return ResponseEntity.ok(meme.get());
+        } else {
+            return ResponseEntity.notFound().build();
+        }
     }
 
-
-    // Save base64 image from client canvas
     @PostMapping("/saveBase64")
     public ResponseEntity<?> saveBase64(@RequestBody Base64Request req) throws IOException {
         Meme saved = memeService.saveBase64Image(req.getData(), req.getTopText(), req.getBottomText());
         return ResponseEntity.ok(saved);
     }
 
-
     @GetMapping
     public List<Meme> all() {
         return memeService.listAll();
     }
 
-
-    // DTO for base64
     public static class Base64Request {
         private String data;
         private String topText;

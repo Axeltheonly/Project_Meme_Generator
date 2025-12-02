@@ -17,22 +17,35 @@
 
 <script>
     async function loadGallery() {
-        const response = await fetch("http://localhost:8080/api/memes");
-        const memes = await response.json();
+    const response = await fetch("http://localhost:8080/api/memes");
+    const memes = await response.json();
 
-        const gallery = document.getElementById("gallery");
-        gallery.innerHTML = "";
+    const gallery = document.getElementById("gallery");
+    gallery.innerHTML = "";
 
-        memes.reverse().forEach(meme => {
-            const img = document.createElement("img");
-            img.src = `http://localhost:8080/uploads/${meme.filename}`;
-            img.classList.add("gallery-img");
+    memes.reverse().forEach(meme => {
+        
+        const memeCard = document.createElement("div");
+        memeCard.classList.add("meme-card");
+        
+        
+        const img = document.createElement("img");
+        img.src = `http://localhost:8080/uploads/${meme.filename}`;
+        img.classList.add("gallery-img");
+        
+        
+        const link = document.createElement("a");
+        link.href = `meme-post.html?id=${meme.id}`;
+        link.classList.add("view-post-btn");
+        link.textContent = "View Post";
+        
+        memeCard.appendChild(img);
+        memeCard.appendChild(link);
+        gallery.appendChild(memeCard);
+    });
+}
 
-            gallery.appendChild(img);
-        });
-    }
-
-    loadGallery();
+loadGallery();
 </script>
 
 </body>

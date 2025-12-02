@@ -91,7 +91,7 @@ canvas {
     text-decoration: underline;
 }
 
-/* Share Buttons Styling */
+
 .share-buttons {
     margin-top: 20px;
     padding: 20px;
@@ -139,7 +139,7 @@ canvas {
     background: #28a745;
 }
 
-/* Gallery Styles */
+
 .gallery {
     margin-top: 20px;
     display: flex;
@@ -160,7 +160,91 @@ canvas {
     box-shadow: 0 4px 12px rgba(0,0,0,0.2);
 }
 
-/* Responsive Design */
+/* Post Page Styles */
+.post-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+    padding-bottom: 15px;
+    border-bottom: 2px solid #007bff;
+}
+
+.post-container {
+    max-width: 800px;
+    margin: 0 auto;
+}
+
+.post-image {
+    text-align: center;
+    margin: 30px 0;
+    background: #f9f9f9;
+    padding: 20px;
+    border-radius: 12px;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+}
+
+.post-image img {
+    max-width: 100%;
+    height: auto;
+    border-radius: 8px;
+    border: 3px solid #ddd;
+}
+
+.post-info {
+    background: #f9f9f9;
+    padding: 20px;
+    border-radius: 8px;
+    margin: 20px 0;
+}
+
+.post-info h2 {
+    color: #333;
+    margin: 0 0 10px 0;
+    font-size: 24px;
+}
+
+.post-info p {
+    color: #666;
+    font-size: 18px;
+    margin: 5px 0;
+}
+
+.post-date {
+    font-size: 14px !important;
+    color: #999 !important;
+    margin-top: 15px !important;
+}
+
+.share-btn.download {
+    background: #6c757d;
+}
+
+.share-btn.download:hover {
+    background: #5a6268;
+}
+.meme-card {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.view-post-btn {
+    display: block;
+    text-align: center;
+    padding: 10px;
+    background: #007bff;
+    color: white;
+    text-decoration: none;
+    border-radius: 5px;
+    font-weight: bold;
+    transition: background 0.3s;
+}
+
+.view-post-btn:hover {
+    background: #0056b3;
+}
+
 @media (max-width: 768px) {
     .controls {
         width: 100%;

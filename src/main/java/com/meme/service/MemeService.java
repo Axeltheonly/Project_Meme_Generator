@@ -13,6 +13,7 @@ import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.Base64;
 import java.util.List;
+import java.util.Optional;
 import java.util.UUID;
 import org.springframework.stereotype.Service;
 
@@ -24,7 +25,9 @@ public class MemeService {
 
     private final String uploadDir = "src/main/resources/static/uploads";
 
-
+    public Optional<Meme> findById(Long id) {
+        return memeRepository.findById(id);
+    }
     public MemeService(MemeRepository memeRepository) {
         this.memeRepository = memeRepository;
     }
